@@ -1,0 +1,15 @@
+[
+  {
+    "title": "March 4, 2025 - Tidy Tuesday Long Beach Island Shelter",
+    "date": "2025-03-04",
+    "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week9_plot1.png",
+    "script": "https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week9/Week9_analysis.R",
+    "description": "Analyzed Long Beach Island Shelter data using Tidyverse and ggplot2."
+  },
+  {
+    "title": "February 21, 2025 - FBI Crime Data",
+    "date": "2025-02-21",
+    "script": "https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week7/Week7_analysis.R",
+    "description": "Analyzed FBI Crime data using Tidyverse and ggplot2."
+  }
+]
