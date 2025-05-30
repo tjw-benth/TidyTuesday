@@ -132,8 +132,12 @@ type_power_plot <- type_power_summary %>%
   ) +
   theme_classic(base_family = "roboto") +
   theme(
-    plot.title = element_text(size = 16, face = "bold"),
-    plot.subtitle = element_text(size = 12, color = "grey40"),
+    plot.title = element_text(size = 20, face = "bold"), 
+    plot.subtitle = element_text(size = 16, color = "grey40"), 
+    axis.title = element_text(size = 14),  
+    axis.text = element_text(size = 12),  
+    legend.title = element_text(size = 14), 
+    legend.text = element_text(size = 12),  
     legend.position = "right"
   )
 
@@ -161,12 +165,16 @@ generation_plot <- generation_trends %>%
   ) +
   theme_classic(base_family = "roboto") +
   theme(
-    plot.title = element_text(size = 16, face = "bold"),
-    plot.subtitle = element_text(size = 12, color = "grey40"),
-    axis.title.y.right = element_text(color = MetBrewer::met.brewer("Signac")[3]),
-    axis.text.y.right = element_text(color = MetBrewer::met.brewer("Signac")[3])
-  )
-
+  plot.title = element_text(size = 20, face = "bold"),  
+  plot.subtitle = element_text(size = 16, color = "grey40"),  
+  axis.title = element_text(size = 14),  
+  axis.text = element_text(size = 12),  
+  axis.title.y.right = element_text(color = MetBrewer::met.brewer("Signac")[3], size = 14),
+  axis.text.y.right = element_text(color = MetBrewer::met.brewer("Signac")[3], size = 12),
+  legend.title = element_text(size = 14), 
+  legend.text = element_text(size = 12), 
+  legend.position = "right"
+)
 
 # =========================================================
 # Visualization 3: Height vs Weight with Type Colors ####
@@ -236,7 +244,7 @@ size_scatter_plot <- height_weight_stats %>%
                             box.padding = 0.5, point.padding = 0.3,
                             segment.color = "black", segment.alpha = 0.7,
                             family = "roboto", fontface = "bold",
-                            size = 3, fill = "white", alpha = 0.9) +
+                            size = 5, fill = "white", alpha = 0.9) +
   scale_x_log10(labels = scales::number_format(suffix = "m")) +
   scale_y_log10(labels = scales::number_format(suffix = "kg")) +
   scale_color_manual(values = pokemon_type_colors, 
@@ -250,11 +258,13 @@ size_scatter_plot <- height_weight_stats %>%
   ) +
   theme_classic(base_family = "roboto") +
   theme(
-    plot.title = element_text(size = 16, face = "bold"),
-    plot.subtitle = element_text(size = 12, color = "grey40"),
-    legend.position = "right",
-    legend.text = element_text(size = 9),
-    legend.title = element_text(size = 10)
+    plot.title = element_text(size = 20, face = "bold"), 
+    plot.subtitle = element_text(size = 16, color = "grey40"), 
+    axis.title = element_text(size = 14),  
+    axis.text = element_text(size = 12),  
+    legend.title = element_text(size = 14), 
+    legend.text = element_text(size = 12),  
+    legend.position = "right"
   )
 
 
@@ -283,8 +293,13 @@ dual_type_plot <- ggplot(dual_type_summary, aes(x = type_combo, y = n)) +
   ) +
   theme_classic(base_family = "roboto") +
   theme(
-    plot.title = element_text(size = 16, face = "bold"),
-    plot.subtitle = element_text(size = 12, color = "grey40")
+    plot.title = element_text(size = 20, face = "bold"), 
+    plot.subtitle = element_text(size = 16, color = "grey40"), 
+    axis.title = element_text(size = 14),  
+    axis.text = element_text(size = 12),  
+    legend.title = element_text(size = 14), 
+    legend.text = element_text(size = 12),  
+    legend.position = "right"
   )
 
 # =========================================================
@@ -308,8 +323,8 @@ combined_plot <- (type_power_plot + generation_plot) /
 
 ggsave(paste0(here::here("outputs", "2025", "Week13_pokemon_dashboard.png")),
        plot = combined_plot,
-       height = 30,
-       width = 45,
+       height = 15,
+       width = 20,
        units = "cm",
        scale = 1.2,
        dpi = 300)
@@ -317,16 +332,16 @@ ggsave(paste0(here::here("outputs", "2025", "Week13_pokemon_dashboard.png")),
 # Save individual plots as well
 ggsave(paste0(here::here("outputs", "2025", "Week13_type_power.png")),
        plot = type_power_plot,
-       height = 20,
-       width = 30,
+       height = 5,
+       width = 7,
        units = "cm",
        scale = 1.2,
        dpi = 300)
 
 ggsave(paste0(here::here("outputs", "2025", "Week13_generation_trends.png")),
        plot = generation_plot,
-       height = 15,
-       width = 25,
+       height = 5,
+       width = 7,
        units = "cm",
        scale = 1.2,
        dpi = 300)
