@@ -1,3 +1,4 @@
+r_scripts/analysis_template.R
 r_scripts/UpdateREADME.R
 .DS_Store
 TidyTuesday.Rproj
