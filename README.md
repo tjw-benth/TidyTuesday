@@ -3,6 +3,13 @@ Repository for TidyTuesday code and graphical outputs
 
 ---
 
+## April 1, 2025 - Pokemon Data
+Analyzed Pokemon data using Tidyverse and ggplot2.
+[📜 R Script](https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week13/Week13_analysis.R)
+![Plot](https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week13_pokemon_dashboard.png)
+
+---
+
 ## March 4, 2025 - Tidy Tuesday Long Beach Island Shelter
 Analyzed Long Beach Island Shelter data using Tidyverse and ggplot2.
 [📜 R Script](https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week9/Week9_analysis.R)
@@ -13,13 +20,6 @@ Analyzed Long Beach Island Shelter data using Tidyverse and ggplot2.
 ## February 21, 2025 - FBI Crime Data
 Analyzed FBI Crime data using Tidyverse and ggplot2.
 [📜 R Script](https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week7/Week7_analysis.R)
-
----
-
-## April 1, 2025 - Pokemon Data
-Analyzed Pokemon data using Tidyverse and ggplot2.
-[📜 R Script](https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week13/Week13_analysis.R)
-![Plot](https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week13_pokemon_dashboard.png)
 
 ---
 
