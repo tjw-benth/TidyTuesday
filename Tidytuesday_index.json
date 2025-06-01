@@ -1,5 +1,12 @@
 [
   {
+    "title": "May 21, 2025 - Sydney Water Quality Data",
+    "date": "2025-05-21",
+    "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week20_dashboard.png",
+    "script": "https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week20/Week20_analysis.R",
+    "description": "Analyzed Sydney Water Quality data using Tidyverse and ggplot2."
+  },
+  {
     "title": "April 1, 2025 - Pokemon Data",
     "date": "2025-04-01",
     "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week13_pokemon_dashboard.png",

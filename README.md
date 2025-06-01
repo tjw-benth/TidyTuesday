@@ -3,6 +3,13 @@ Repository for TidyTuesday code and graphical outputs
 
 ---
 
+## May 21, 2025 - Sydney Water Quality Data
+Analyzed Sydney Water Quality data using Tidyverse and ggplot2.
+[📜 R Script](https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week20/Week20_analysis.R)
+![Plot](https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week20_dashboard.png)
+
+---
+
 ## April 1, 2025 - Pokemon Data
 Analyzed Pokemon data using Tidyverse and ggplot2.
 [📜 R Script](https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week13/Week13_analysis.R)
