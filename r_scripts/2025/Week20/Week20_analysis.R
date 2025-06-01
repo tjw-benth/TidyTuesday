@@ -436,7 +436,7 @@ weather_effects_plot <- merged_data %>%
 
 # Main water quality dashboard
 dashboard <- (spatial_plot | seasonal_plot) /
-  (temp_correlation_plot | nhmrc_category_plot) +
+  (weather_effects_plot | nhmrc_category_plot) +
   plot_annotation(
     title = "Sydney Swimming Sites Water Quality Analysis",
     subtitle = "Comprehensive analysis of enterococci levels across Sydney's swimming locations (NHMRC 2008 Standards)",
