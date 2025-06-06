@@ -2,7 +2,7 @@
     {
     "title": "May 27, 2025 - Dungeons and Dragons Monsters (2024)",
     "date": "2025-05-27",
-    "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week21_DnD_dashboard.png",
+    "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week21_DnD_Dashboard.png",
     "script": "https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week21/Week21_analysis.R",
     "description": "Analyzed Dungeons and Dragons Monsters (2024) data using Tidyverse and ggplot2."
   },
