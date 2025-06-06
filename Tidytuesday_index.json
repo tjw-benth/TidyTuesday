@@ -1,4 +1,11 @@
 [
+    {
+    "title": "May 27, 2025 - Dungeons and Dragons Monsters (2024)",
+    "date": "2025-05-27",
+    "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week21_dashboard.png",
+    "script": "https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week21/Week21_analysis.R",
+    "description": "Analyzed Dungeons and Dragons Monsters (2024) data using Tidyverse and ggplot2."
+  },
   {
     "title": "May 21, 2025 - Sydney Water Quality Data",
     "date": "2025-05-21",
