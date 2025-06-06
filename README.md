@@ -6,7 +6,7 @@ Repository for TidyTuesday code and graphical outputs
 ## May 27, 2025 - Dungeons and Dragons Monsters (2024)
 Analyzed Dungeons and Dragons Monsters (2024) data using Tidyverse and ggplot2.
 [📜 R Script](https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week21/Week21_analysis.R)
-![Plot](https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week21_dashboard.png)
+![Plot](https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week21_DnD_dashboard.png)
 
 ---
 
