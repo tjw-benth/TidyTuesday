@@ -1,5 +1,12 @@
 [
-    {
+   {
+    "title": "June 03, 2025 - Project Gutenberg",
+    "date": "2025-06-23",
+    "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week22_Gutenberg_Dashboard.png",
+    "script": "https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week22/Week22_analysis.R",
+    "description": "Analysis of Project Gutenberg digital library collection using Tidyverse and ggplot2."
+   },
+  {
     "title": "May 27, 2025 - Dungeons and Dragons Monsters (2024)",
     "date": "2025-05-27",
     "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week21_DnD_Dashboard.png",
