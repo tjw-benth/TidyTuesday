@@ -3,48 +3,48 @@
     "title": "June 17, 2025 - APIs.guru",
     "date": "2025-06-17",
     "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week24_WebAPIs_Dashboard.png",
-    "script": "https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week24/Week24_analysis.R",
+    "script": "https://github.com/tjw-benth/TidyTuesday/blob/main/r_scripts/2025/Week24/Week24_analysis.R",
     "description": "Analysis of Web APIs dataset from APIs.guru using Tidyverse and ggplot2."
    },
    {
     "title": "June 03, 2025 - Project Gutenberg",
     "date": "2025-06-03",
     "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week22_Gutenberg_Dashboard.png",
-    "script": "https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week22/Week22_analysis.R",
+    "script": "https://github.com/tjw-benth/TidyTuesday/blob/main/r_scripts/2025/Week22/Week22_analysis.R",
     "description": "Analysis of Project Gutenberg digital library collection using Tidyverse and ggplot2."
    },
   {
     "title": "May 27, 2025 - Dungeons and Dragons Monsters (2024)",
     "date": "2025-05-27",
     "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week21_DnD_Dashboard.png",
-    "script": "https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week21/Week21_analysis.R",
+    "script": "https://github.com/tjw-benth/TidyTuesday/blob/main/r_scripts/2025/Week21/Week21_analysis.R",
     "description": "Analyzed Dungeons and Dragons Monsters (2024) data using Tidyverse and ggplot2."
   },
   {
     "title": "May 21, 2025 - Sydney Water Quality Data",
     "date": "2025-05-21",
     "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week20_dashboard.png",
-    "script": "https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week20/Week20_analysis.R",
+    "script": "https://github.com/tjw-benth/TidyTuesday/blob/main/r_scripts/2025/Week20/Week20_analysis.R",
     "description": "Analyzed Sydney Water Quality data using Tidyverse and ggplot2."
   },
   {
     "title": "April 1, 2025 - Pokemon Data",
     "date": "2025-04-01",
     "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week13_pokemon_dashboard.png",
-    "script": "https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week13/Week13_analysis.R",
+    "script": "https://github.com/tjw-benth/TidyTuesday/blob/main/r_scripts/2025/Week13/Week13_analysis.R",
     "description": "Analyzed Pokemon data using Tidyverse and ggplot2."
   },
   {
     "title": "March 4, 2025 - Tidy Tuesday Long Beach Island Shelter",
     "date": "2025-03-04",
     "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week9_plot1.png",
-    "script": "https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week9/Week9_analysis.R",
+    "script": "https://github.com/tjw-benth/TidyTuesday/blob/main/r_scripts/2025/Week9/Week9_analysis.R",
     "description": "Analyzed Long Beach Island Shelter data using Tidyverse and ggplot2."
   },
   {
     "title": "February 21, 2025 - FBI Crime Data",
     "date": "2025-02-21",
-    "script": "https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week7/Week7_analysis.R",
+    "script": "https://github.com/tjw-benth/TidyTuesday/blob/main/r_scripts/2025/Week7/Week7_analysis.R",
     "description": "Analyzed FBI Crime data using Tidyverse and ggplot2."
   }
 ]
