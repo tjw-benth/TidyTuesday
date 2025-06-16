@@ -127,9 +127,9 @@ showtext::showtext_auto()
 theme_custom <- function() {
   theme_classic(base_family = "sans") +
     theme(
-      plot.title = element_text(size = 32, face = "bold", family = "sans"),
-      plot.subtitle = element_text(size = 24, color = "grey40"),
-      plot.caption = element_text(size = 18, color = "grey50"),
+      plot.title = element_text(size = 28, face = "bold", family = "sans"),
+      plot.subtitle = element_text(size = 20, color = "grey40"),
+      plot.caption = element_text(size = 14, color = "grey50"),
       axis.title = element_text(size = 18),
       axis.text = element_text(size = 15),
       legend.text = element_text(size = 14),
@@ -153,7 +153,7 @@ plot1 <- category_summary %>%
     title = "Most Popular API Categories",
     subtitle = "Number of APIs registered in each category on APIs.guru",
     x = "API Category",
-    y = "Number of APIs",
+    y = "Number of APIs"
   ) +
   theme_custom()
 
@@ -173,261 +173,7 @@ plot2 <- main_df %>%
   labs(
     title = "API Growth on APIs.guru",
     subtitle = "Bars show annual additions, line shows cumulative total",
-    x = "Year",
-  ) +
-  theme_custom()
-
-# 3. Top API Providers
-plot3 <- provider_summary %>%
-  ggplot(aes(x = provider_short, y = n, fill = provider_short)) +
-  geom_col(alpha = 0.8, show.legend = FALSE) +
-  scale_fill_manual(values = MetBrewer::met.brewer("Archambault", nrow(provider_summary))) +
-  scale_y_continuous(expand = c(0, 0)) +
-  coord_flip() +
-  labs(
-    title = "Top API Providers",
-    subtitle = "Organizations with the most APIs in the directory",
-    x = "Provider",
-    y = "Number of APIs",
-  ) +
-  theme_custom()
-
-# 4. OpenAPI Version Distribution
-plot4 <- main_df %>%
-  filter(!is.na(openapi_ver)) %>%
-  count(openapi_version_clean, sort = TRUE) %>%
-  mutate(
-    pct = n / sum(n),
-    openapi_version_clean = fct_reorder(openapi_version_clean, n)
-  ) %>%
-  ggplot(aes(x = openapi_version_clean, y = pct, fill = openapi_version_clean)) +
-  geom_col(alpha = 0.8, show.legend = FALSE) +
-  scale_fill_manual(values = MetBrewer::met.brewer("Hokusai2", 3)) +
-  scale_y_continuous(labels = percent_format(), expand = c(0, 0)) +
-  coord_flip() +
-  labs(
-    title = "API Specification Versions",
-    subtitle = "Distribution of OpenAPI/Swagger versions",
-    x = "Specification Version",
-    y = "Percentage of APIs",
-  ) +
-  theme_custom()
-
-# 5. API Maintenance Patterns
-plot5 <- main_df %>%
-  filter(!is.na(months_since_update), months_since_update >= 0) %>%
-  mutate(
-    update_category = case_when(
-      months_since_update <= 3 ~ "Recently Updated (≤3 months)",
-      months_since_update <= 12 ~ "Moderately Updated (3-12 months)",
-      months_since_update <= 36 ~ "Older Updates (1-3 years)",
-      TRUE ~ "Very Old (>3 years)"
-    ),
-    update_category = factor(update_category, levels = c(
-      "Recently Updated (≤3 months)",
-      "Moderately Updated (3-12 months)", 
-      "Older Updates (1-3 years)",
-      "Very Old (>3 years)"
-    ))
-  ) %>%
-  count(update_category) %>%
-  mutate(pct = n / sum(n)) %>%
-  ggplot(aes(x = update_category, y = pct, fill = update_category)) +
-  geom_col(alpha = 0.8, show.legend = FALSE) +
-  scale_fill_manual(values = MetBrewer::met.brewer("Moreau", 4)) +
-  scale_y_continuous(labels = percent_format(), expand = c(0, 0)) +
-  scale_x_discrete(labels = function(x) str_wrap(x, 15)) +
-  labs(
-    title = "API Maintenance Patterns",
-    subtitle = "How recently APIs were last updated",
-    x = "Time Since Last Update",
-    y = "Percentage of APIs",
-  ) +
-  theme_custom() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-# =========================================================
-# Create Dashboard Layout ####
-# =========================================================
-
-############################################################
-# Title: Tidy Tuesday - Web APIs from APIs.guru
-# Author: Tom Williams
-# Date: June 17, 2025
-# Description: TidyTuesday analysis of Web APIs dataset from APIs.guru
-# Version: R version auto-detected below
-############################################################
-
-# =========================================================
-# Load or install required packages ####
-# =========================================================
-pkgs <- c("tidyverse", "cli", "ggblanket", "ggtext", "MetBrewer", "lubridate",
-          "patchwork", "sf", "sp", "plotly", "tidytuesdayR", "janitor", "waffle", 
-          "showtext", "fmsb", "scales", "ggrepel", "viridis", "here", "wordcloud2")
-
-new_pkgs <- pkgs[!(pkgs %in% installed.packages()[, "Package"])]
-
-if(length(new_pkgs)) {
-  install.packages(new_pkgs, dependencies = TRUE)
-}
-invisible(lapply(pkgs, library, character.only = TRUE))
-cat("Running on R version:", R.version.string, "\n")
-
-# =========================================================
-# Load TidyTuesday data ####
-# =========================================================
-# Load data from TidyTuesday Week 24 2025
-tuesdata <- tidytuesdayR::tt_load('2025-06-17')
-api_categories <- tuesdata$api_categories
-api_info <- tuesdata$api_info
-api_logos <- tuesdata$api_logos
-api_origins <- tuesdata$api_origins
-apisguru_apis <- tuesdata$apisguru_apis
-
-# Alternatively, read directly from GitHub
-# api_categories <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-06-17/api_categories.csv')
-# api_info <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-06-17/api_info.csv')
-# api_logos <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-06-17/api_logos.csv')
-# api_origins <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-06-17/api_origins.csv')
-# apisguru_apis <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-06-17/apisguru_apis.csv')
-
-# =========================================================
-# Explore the data ####
-# =========================================================
-str(api_categories)
-str(api_info)
-str(api_logos)
-str(api_origins)
-str(apisguru_apis)
-
-glimpse(api_categories)
-glimpse(api_info)
-glimpse(apisguru_apis)
-
-# Check data dimensions
-cat("Dataset dimensions:\n")
-cat("API Categories:", nrow(api_categories), "rows\n")
-cat("API Info:", nrow(api_info), "rows\n")
-cat("API Logos:", nrow(api_logos), "rows\n")
-cat("API Origins:", nrow(api_origins), "rows\n")
-cat("APIs Guru Main:", nrow(apisguru_apis), "rows\n")
-
-# =========================================================
-# Data cleaning & transformation ####
-# =========================================================
-
-# Create main analysis dataset by joining key tables
-main_df <- apisguru_apis %>%
-  janitor::clean_names() %>%
-  left_join(api_info %>% select(name, provider_name, service_name, description, title), 
-            by = "name") %>%
-  left_join(api_categories %>% 
-              group_by(name) %>% 
-              summarise(categories = paste(apisguru_category, collapse = ", "),
-                        n_categories = n(), .groups = "drop"),
-            by = "name") %>%
-  mutate(
-    year_added = lubridate::year(added),
-    year_updated = lubridate::year(updated),
-    months_since_update = as.numeric(difftime(Sys.Date(), updated, units = "days")) / 30.44,
-    has_external_docs = !is.na(external_docs_url),
-    openapi_version_clean = case_when(
-      str_detect(openapi_ver, "^3\\.") ~ "OpenAPI 3.x",
-      str_detect(openapi_ver, "^2\\.") ~ "Swagger 2.x",
-      TRUE ~ "Other/Unknown"
-    ),
-    provider_clean = case_when(
-      is.na(provider_name) ~ "Unknown Provider",
-      str_length(provider_name) > 20 ~ str_trunc(provider_name, 20),
-      TRUE ~ provider_name
-    )
-  ) %>%
-  filter(!is.na(added))
-
-# Get category analysis
-category_summary <- api_categories %>%
-  count(apisguru_category, sort = TRUE, name = "n_apis") %>%
-  mutate(
-    pct = n_apis / sum(n_apis),
-    category_clean = case_when(
-      str_length(apisguru_category) > 15 ~ str_trunc(apisguru_category, 15),
-      TRUE ~ apisguru_category
-    )
-  )
-
-# Provider analysis
-provider_summary <- main_df %>%
-  filter(!is.na(provider_name)) %>%
-  count(provider_name, sort = TRUE) %>%
-  slice_head(n = 15) %>%
-  mutate(
-    provider_short = case_when(
-      str_length(provider_name) > 12 ~ str_trunc(provider_name, 12),
-      TRUE ~ provider_name
-    ),
-    provider_short = fct_reorder(provider_short, n)
-  )
-
-# =========================================================
-# Analysis & Visualization ####
-# =========================================================
-
-# Add fonts
-showtext::showtext_auto()
-
-# Custom theme
-theme_custom <- function() {
-  theme_classic(base_family = "sans") +
-    theme(
-      plot.title = element_text(size = 32, face = "bold", family = "sans"),
-      plot.subtitle = element_text(size = 24, color = "grey40"),
-      plot.caption = element_text(size = 18, color = "grey50"),
-      axis.title = element_text(size = 18),
-      axis.text = element_text(size = 15),
-      legend.text = element_text(size = 14),
-      legend.title = element_text(size = 18),
-      legend.position = "bottom",
-      panel.grid.minor = element_blank(),
-      strip.text = element_text(face = "bold")
-    )
-}
-
-# 1. API Categories Distribution
-plot1 <- category_summary %>%
-  slice_head(n = 12) %>%
-  mutate(category_clean = fct_reorder(category_clean, n_apis)) %>%
-  ggplot(aes(x = category_clean, y = n_apis, fill = category_clean)) +
-  geom_col(alpha = 0.8, show.legend = FALSE) +
-  scale_fill_manual(values = MetBrewer::met.brewer("Signac", 12)) +
-  scale_y_continuous(expand = c(0, 0)) +
-  coord_flip() +
-  labs(
-    title = "Most Popular API Categories",
-    subtitle = "Number of APIs registered in each category on APIs.guru",
-    x = "API Category",
-    y = "Number of APIs",
-    caption = "Data: APIs.guru via TidyTuesday Week 24 2025"
-  ) +
-  theme_custom()
-
-# 2. API Growth Over Time
-plot2 <- main_df %>%
-  filter(year_added >= 2014) %>%
-  count(year_added, name = "apis_added") %>%
-  mutate(cumulative_apis = cumsum(apis_added)) %>%
-  ggplot(aes(x = year_added)) +
-  geom_col(aes(y = apis_added), fill = MetBrewer::met.brewer("Signac")[4], alpha = 0.7) +
-  geom_line(aes(y = cumulative_apis / 10), color = MetBrewer::met.brewer("Signac")[2], size = 2) +
-  scale_y_continuous(
-    name = "APIs Added per Year",
-    sec.axis = sec_axis(~ . * 10, name = "Cumulative APIs")
-  ) +
-  scale_x_continuous(breaks = seq(2014, 2025, 2)) +
-  labs(
-    title = "API Growth on APIs.guru",
-    subtitle = "Bars show annual additions, line shows cumulative total",
-    x = "Year",
-    caption = "Data: APIs.guru via TidyTuesday Week 24 2025"
+    x = "Year"
   ) +
   theme_custom()
 
@@ -440,10 +186,9 @@ plot3 <- provider_summary %>%
   coord_flip() +
   labs(
     title = "Top API Providers",
-    subtitle = "Organizations with the most APIs in the directory",
+    subtitle = "Orgs. with the most APIs in the directory",
     x = "Provider",
-    y = "Number of APIs",
-    caption = "Data: APIs.guru via TidyTuesday Week 24 2025"
+    y = "Number of APIs"
   ) +
   theme_custom()
 
@@ -464,8 +209,7 @@ plot4 <- main_df %>%
     title = "API Specification Versions",
     subtitle = "Distribution of OpenAPI/Swagger versions",
     x = "Specification Version",
-    y = "Percentage of APIs",
-    caption = "Data: APIs.guru via TidyTuesday Week 24 2025"
+    y = "Percentage of APIs"
   ) +
   theme_custom()
 
@@ -498,7 +242,6 @@ plot5 <- main_df %>%
     subtitle = "How recently APIs were last updated",
     x = "Time Since Last Update",
     y = "Percentage of APIs",
-    caption = "Data: APIs.guru via TidyTuesday Week 24 2025"
   ) +
   theme_custom() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
@@ -533,6 +276,11 @@ if(nrow(network_data) > 0) {
       node_type = "provider"
     )
   
+  # Calculate proportional spacing for categories
+  n_providers <- nrow(providers_df)
+  n_categories <- length(unique(network_data$apisguru_category))
+  provider_span <- max(providers_df$y) - min(providers_df$y)
+  
   categories_df <- network_data %>%
     distinct(apisguru_category) %>%
     mutate(
@@ -541,7 +289,12 @@ if(nrow(network_data) > 0) {
         TRUE ~ apisguru_category
       ),
       x = 4,
-      y = row_number() * 2,  # Space them out more
+      # Spread categories proportionally across the same vertical space as providers
+      y = if(n_categories == 1) {
+        mean(providers_df$y)  # Center single category
+      } else {
+        min(providers_df$y) + (row_number() - 1) * provider_span / (n_categories - 1)
+      },
       node_type = "category"
     )
   
@@ -585,32 +338,32 @@ if(nrow(network_data) > 0) {
     # Add provider labels
     geom_text(data = providers_df,
               aes(x = x - 0.15, y = y, label = provider_short),
-              hjust = 1, size = 3.5, family = "sans", fontface = "bold") +
+              hjust = 1, size = 5, family = "sans", fontface = "bold") +
     # Add category labels
     geom_text(data = categories_df,
               aes(x = x + 0.15, y = y, label = category_short),
-              hjust = 0, size = 3.5, family = "sans", fontface = "bold") +
-    # Legend for connection strength
-    annotate("text", x = 2.5, y = max(c(max(providers_df$y), max(categories_df$y))) + 3,
+              hjust = 0, size = 5, family = "sans", fontface = "bold") +
+    # Legend for connection strength (moved to right side)
+    annotate("text", x = 6, y = max(c(max(providers_df$y), max(categories_df$y))),
              label = "Connection Strength", fontface = "bold", size = 10) +
-    annotate("segment", x = 2.2, y = max(c(max(providers_df$y), max(categories_df$y))) ,
-             xend = 2.4, yend = max(c(max(providers_df$y), max(categories_df$y))),
+    annotate("segment", x = 5.8, y = max(c(max(providers_df$y), max(categories_df$y))) - 6,
+             xend = 6.2, yend = max(c(max(providers_df$y), max(categories_df$y))) - 6,
              size = 1.5, color = MetBrewer::met.brewer("Signac")[1]) +
-    annotate("text", x = 2.45, y = max(c(max(providers_df$y), max(categories_df$y))),
+    annotate("text", x = 6.3, y = max(c(max(providers_df$y), max(categories_df$y))) - 6,
              label = "5+ APIs", hjust = 0, size = 7) +
-    annotate("segment", x = 2.2, y = max(c(max(providers_df$y), max(categories_df$y))) - 3,
-             xend = 2.4, yend = max(c(max(providers_df$y), max(categories_df$y))) - 3,
+    annotate("segment", x = 5.8, y = max(c(max(providers_df$y), max(categories_df$y))) - 11,
+             xend = 6.2, yend = max(c(max(providers_df$y), max(categories_df$y))) - 11,
              size = 1.0, color = MetBrewer::met.brewer("Signac")[3]) +
-    annotate("text", x = 2.45, y = max(c(max(providers_df$y), max(categories_df$y))) - 3,
+    annotate("text", x = 6.3, y = max(c(max(providers_df$y), max(categories_df$y))) - 11,
              label = "3-4 APIs", hjust = 0, size = 7) +
-    annotate("segment", x = 2.2, y = max(c(max(providers_df$y), max(categories_df$y))) -6,
-             xend = 2.4, yend = max(c(max(providers_df$y), max(categories_df$y))) - 6,
+    annotate("segment", x = 5.8, y = max(c(max(providers_df$y), max(categories_df$y))) - 15,
+             xend = 6.2, yend = max(c(max(providers_df$y), max(categories_df$y))) - 15,
              size = 0.5, color = MetBrewer::met.brewer("Signac")[4]) +
-    annotate("text", x = 2.45, y = max(c(max(providers_df$y), max(categories_df$y))) - 6,
+    annotate("text", x = 6.3, y = max(c(max(providers_df$y), max(categories_df$y))) - 15,
              label = "2 APIs", hjust = 0, size = 7) +
     scale_color_identity() +
     scale_size_identity() +
-    xlim(0, 5.5) +
+    xlim(0, 8) +
     ylim(0, max(c(max(providers_df$y), max(categories_df$y))) + 4) +
     labs(
       title = "Provider-Category Network",
@@ -639,15 +392,15 @@ if(nrow(network_data) > 0) {
     labs(title = "Provider-Category Network", subtitle = "No data available")
 }
 
-
 # =========================================================
 # Create Dashboard Layout ####
 # =========================================================
 
 # Create a comprehensive dashboard
-dashboard <- (plot1 + plot2) / (plot3 + (plot4 + plot5)) / plot6 +
+dashboard <- (plot1 + plot2) / (plot3 + plot4 + plot5) / plot6 +
   plot_layout(
-    heights = c(1, 1, 1)
+    heights = c(1, 1, 1.5)
+    
   ) +
   plot_annotation(
     title = "Web APIs Landscape Analysis",
@@ -671,11 +424,11 @@ if (!dir.exists(here::here("outputs", "2025"))) dir.create(here::here("outputs",
 # Save main dashboard
 ggsave(paste0(here::here("outputs", "2025", "Week24_WebAPIs_Dashboard.png")),
        plot = dashboard,
-       height = 20,
+       height = 22,
        width = 24,  
        units = "cm",
        dpi = 300,
-       scale = 1.4)
+       scale = 2.4)
 
 # Save individual plots
 ggsave(paste0(here::here("outputs", "2025", "Week24_api_categories.png")),
@@ -684,7 +437,7 @@ ggsave(paste0(here::here("outputs", "2025", "Week24_api_categories.png")),
        width = 15,
        units = "cm",
        dpi = 300,
-       scale = 1.2)
+       scale = 2)
 
 ggsave(paste0(here::here("outputs", "2025", "Week24_api_growth.png")),
        plot = plot2,
@@ -692,7 +445,7 @@ ggsave(paste0(here::here("outputs", "2025", "Week24_api_growth.png")),
        width = 15,
        units = "cm",
        dpi = 300,
-       scale = 1.2)
+       scale = 2)
 
 ggsave(paste0(here::here("outputs", "2025", "Week24_top_providers.png")),
        plot = plot3,
@@ -700,7 +453,7 @@ ggsave(paste0(here::here("outputs", "2025", "Week24_top_providers.png")),
        width = 15,
        units = "cm",
        dpi = 300,
-       scale = 1.2)
+       scale = 2)
 
 ggsave(paste0(here::here("outputs", "2025", "Week24_openapi_versions.png")),
        plot = plot4,
@@ -708,7 +461,7 @@ ggsave(paste0(here::here("outputs", "2025", "Week24_openapi_versions.png")),
        width = 15,
        units = "cm",
        dpi = 300,
-       scale = 1.2)
+       scale = 2)
 
 ggsave(paste0(here::here("outputs", "2025", "Week24_maintenance_patterns.png")),
        plot = plot5,
@@ -716,7 +469,7 @@ ggsave(paste0(here::here("outputs", "2025", "Week24_maintenance_patterns.png")),
        width = 15,
        units = "cm",
        dpi = 300,
-       scale = 1.2)
+       scale = 2)
 
 ggsave(paste0(here::here("outputs", "2025", "Week24_provider_network.png")),
        plot = plot6,
@@ -724,7 +477,7 @@ ggsave(paste0(here::here("outputs", "2025", "Week24_provider_network.png")),
        width = 18,
        units = "cm",
        dpi = 300,
-       scale = 1.2)
+       scale = 2)
 
 # =========================================================
 # Summary Statistics ####
@@ -783,33 +536,28 @@ print(top_categories)
 # =========================================================
 
 # Category co-occurrence analysis
-# multi_category_apis <- api_categories %>%
-#   group_by(name) %>%
-#   summarise(categories = paste(apisguru_category, collapse = " & "), .groups = "drop") %>%
-#   filter(str_detect(categories, " & ")) %>%
-#   count(categories, sort = TRUE)
-
-# Geographic analysis of API origins (if country data available)
-# country_analysis <- api_origins %>%
-#   count(country, sort = TRUE) %>%
-#   slice_head(n = 10)
+multi_category_apis <- api_categories %>%
+  group_by(name) %>%
+  summarise(categories = paste(apisguru_category, collapse = " & "), .groups = "drop") %>%
+  filter(str_detect(categories, " & ")) %>%
+  count(categories, sort = TRUE)
 
 # License analysis
-# license_summary <- api_info %>%
-#   filter(!is.na(license_name)) %>%
-#   count(license_name, sort = TRUE) %>%
-#   slice_head(n = 10)
+license_summary <- api_info %>%
+  filter(!is.na(license_name)) %>%
+  count(license_name, sort = TRUE) %>%
+  slice_head(n = 10)
 
 # Interactive exploration of API ecosystem
-# interactive_scatter <- main_df %>%
-#   filter(!is.na(year_added), !is.na(months_since_update)) %>%
-#   ggplot(aes(x = year_added, y = months_since_update, 
-#              color = openapi_version_clean,
-#              text = paste("API:", name, "<br>Provider:", provider_name))) +
-#   geom_point(alpha = 0.7) +
-#   scale_color_manual(values = MetBrewer::met.brewer("Hokusai2", 3)) +
-#   labs(title = "API Age vs Last Update",
-#        x = "Year Added", y = "Months Since Update") +
-#   theme_custom()
-# 
-# plotly::ggplotly(interactive_scatter, tooltip = "text")
+interactive_scatter <- main_df %>%
+  filter(!is.na(year_added), !is.na(months_since_update)) %>%
+  ggplot(aes(x = year_added, y = months_since_update,
+             color = openapi_version_clean,
+             text = paste("API:", name, "<br>Provider:", provider_name))) +
+  geom_point(alpha = 0.7) +
+  scale_color_manual(values = MetBrewer::met.brewer("Hokusai2", 3)) +
+  labs(title = "API Age vs Last Update",
+       x = "Year Added", y = "Months Since Update") +
+  theme_custom()
+
+plotly::ggplotly(interactive_scatter, tooltip = "text")
