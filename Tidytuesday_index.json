@@ -1,7 +1,14 @@
 [
+    {
+    "title": "June 17, 2025 - APIs.guru",
+    "date": "2025-06-17",
+    "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week24_WebAPIs_Dashboard.png",
+    "script": "https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week24/Week24_analysis.R",
+    "description": "Analysis of Web APIs dataset from APIs.guru using Tidyverse and ggplot2."
+   },
    {
     "title": "June 03, 2025 - Project Gutenberg",
-    "date": "2025-06-23",
+    "date": "2025-06-03",
     "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week22_Gutenberg_Dashboard.png",
     "script": "https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week22/Week22_analysis.R",
     "description": "Analysis of Project Gutenberg digital library collection using Tidyverse and ggplot2."

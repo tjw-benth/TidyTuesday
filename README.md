@@ -3,6 +3,13 @@ Repository for TidyTuesday code and graphical outputs
 
 ---
 
+## June 17, 2025 - APIs.guru
+Analysis of Web APIs dataset from APIs.guru using Tidyverse and ggplot2.
+[📜 R Script](https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week24/Week24_analysis.R)
+![Plot](https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week24_WebAPIs_Dashboard.png)
+
+---
+
 ## June 03, 2025 - Project Gutenberg
 Analysis of Project Gutenberg digital library collection using Tidyverse and ggplot2.
 [📜 R Script](https://github.com/tjw-benth/tidytuesday-portfolio/blob/main/r_scripts/2025/Week22/Week22_analysis.R)
