@@ -1,4 +1,11 @@
 [
+     {
+    "title": "July 08, 2025 - xkcd Color Survey Results",
+    "date": "2025-07-08",
+    "image": "https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week27_XKCD_Color_Survey_Dashboard.png",
+    "script": "https://github.com/tjw-benth/TidyTuesday/blob/main/r_scripts/2025/Week27/Week27_analysis.R",
+    "description": "Analysis of the xkcd Color Survey Results using Tidyverse and ggplot2."
+   },
     {
     "title": "June 17, 2025 - APIs.guru",
     "date": "2025-06-17",

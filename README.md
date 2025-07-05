@@ -3,6 +3,13 @@ Repository for TidyTuesday code and graphical outputs
 
 ---
 
+## July 08, 2025 - xkcd Color Survey Results
+Analysis of the xkcd Color Survey Results using Tidyverse and ggplot2.
+[📜 R Script](https://github.com/tjw-benth/TidyTuesday/blob/main/r_scripts/2025/Week27/Week27_analysis.R)
+![Plot](https://raw.githubusercontent.com/tjw-benth/TidyTuesday/main/outputs/2025/Week27_XKCD_Color_Survey_Dashboard.png)
+
+---
+
 ## June 17, 2025 - APIs.guru
 Analysis of Web APIs dataset from APIs.guru using Tidyverse and ggplot2.
 [📜 R Script](https://github.com/tjw-benth/TidyTuesday/blob/main/r_scripts/2025/Week24/Week24_analysis.R)
